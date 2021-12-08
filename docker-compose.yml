@@ -1,0 +1,19 @@
+version: '3'
+volumes:
+   prometheus_data_resource: {}
+services:
+   prometheus:
+     image: prom/prometheus:v2.25.2
+     container_name: Prometheus-Resource-Monitoring-SMJ
+     volumes:
+       - ./prometheus.yml:/etc/prometheus/prometheus.yml
+       - prometheus_data_resource:/prometheus
+     command:
+       - '--config.file=/etc/prometheus/prometheus.yml'
+       - '--storage.tsdb.path=/prometheus'
+       - '--web.console.libraries=/usr/share/prometheus/console_libraries'
+       - '--web.console.templates=/usr/share/prometheus/consoles'
+       - '--storage.tsdb.retention.time=365d'
+     ports:
+       - HOST_PORT:9090
+     restart: always
