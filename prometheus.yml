@@ -5,7 +5,7 @@ global:
 scrape_configs:
   - job_name: 'prometheus' 
     static_configs: 
-  - targets: ['HOST_IP:HOST_PORT'] ## IP Address of the localhost
+      - targets: ['HOST_IP:HOST_PORT'] ## IP Address of the localhost
   - job_name: 'node-exporter' 
     static_configs: 
       - targets: [MONITOR_IP] ## IP Address of the localhost
